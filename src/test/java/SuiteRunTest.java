@@ -8,8 +8,6 @@ import org.junit.runners.Suite;
         ClassTwoTest.class
 })
 
-
 public class SuiteRunTest {
-
 }
 

@@ -35,7 +35,6 @@ public class ClassOneTest {
         LOG.info("@AfterClass: executedAfterAllTests");
     }
 
-
     @Category(SlowTests.class)
     @Test
     public void addTest() {
