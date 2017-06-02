@@ -7,7 +7,7 @@ import org.junit.runners.MethodSorters;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ClassTwoTest {
-    private static final Logger LOG = Logger.getLogger(ClassOneTest.class);
+    private final Logger LOG = Logger.getLogger(ClassOneTest.class);
 
     @Category(FastTests.class)
     @Ignore

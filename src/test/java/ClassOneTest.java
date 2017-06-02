@@ -7,21 +7,29 @@ import static org.junit.Assert.assertEquals;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ClassOneTest {
-    private static final Logger LOG = Logger.getLogger(ClassOneTest.class);
     final static int numberOne = 50;
     final static int numberTwo = 5;
-    Mathematics mathematics;
+    final static int sumResult = 55;
+    final static int deductResult = 45;
+    final static int divideResult = 10;
+    final static int multiplyResult = 250;
+    private static final Logger LOG = Logger.getLogger(ClassOneTest.class);
+    private Mathematics mathematics;
 
     @BeforeClass
     public static void onceExecutedBeforeAll() {
         LOG.info("@BeforeClass: executedBeforeAllTests");
     }
 
+    @AfterClass
+    public static void onceExecutedAfterAll() {
+        LOG.info("@AfterClass: executedAfterAllTests");
+    }
+
     @Before
     public void executedBeforeEachTest() {
         LOG.info("@Before: executedBeforeEachTest");
-        Mathematics math = new Mathematics();
-        mathematics = math;
+        mathematics = new Mathematics();
     }
 
     @After
@@ -30,32 +38,27 @@ public class ClassOneTest {
         mathematics.setResult(0);
     }
 
-    @AfterClass
-    public static void onceExecutedAfterAll() {
-        LOG.info("@AfterClass: executedAfterAllTests");
-    }
-
     @Category(SlowTests.class)
     @Test
     public void addTest() {
         mathematics.add(numberOne, numberTwo);
         int result = mathematics.getResult();
-        assertEquals("Not expected result is displayed", 55, result);
+        assertEquals("Not expected result is displayed", sumResult, result);
     }
 
     @Category(SlowTests.class)
     @Test(timeout = 1000)
     public void deductTest() {
+        mathematics.setResult(1);
         try {
-            mathematics.setResult(1);
             Thread.sleep(1500);
-            mathematics.deduct(numberOne, numberTwo);
-            int result = mathematics.getResult();
-            assertEquals("Not expected result is displayed", 45, result);
         } catch (InterruptedException ex) {
             LOG.error(ex);
-            Assert.fail();
+            Assert.fail("The exception has been caught " + ex);
         }
+        mathematics.deduct(numberOne, numberTwo);
+        int result = mathematics.getResult();
+        assertEquals("Not expected result is displayed", deductResult, result);
     }
 
     @Category(SlowTests.class)
@@ -63,7 +66,7 @@ public class ClassOneTest {
     public void multiplyTest() {
         mathematics.multiply(numberOne, numberTwo);
         int result = mathematics.getResult();
-        assertEquals("Not expected result is displayed", 250, result);
+        assertEquals("Not expected result is displayed", multiplyResult, result);
     }
 
     @Category(SlowTests.class)
@@ -71,14 +74,14 @@ public class ClassOneTest {
     public void divideTest() {
         mathematics.divide(numberOne, numberTwo);
         int result = mathematics.getResult();
-        assertEquals("Not expected result is displayed", 10, result);
+        assertEquals("Not expected result is displayed", divideResult, result);
     }
 
     @Category(SlowTests.class)
     @Test
     public void divideByZeroTest() {
-        mathematics.divide(1, 0);
+        mathematics.divide(numberOne, 0);
         int result = mathematics.getResult();
-        assertEquals("Not expected result is displayed", 10, result);
+        assertEquals("Not expected result is displayed", divideResult, result);
     }
 }

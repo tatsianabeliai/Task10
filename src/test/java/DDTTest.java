@@ -11,7 +11,7 @@ import static junit.framework.TestCase.assertEquals;
 @RunWith(value = Parameterized.class)
 public class DDTTest {
     private static final Logger LOG = Logger.getLogger(DDTTest.class);
-    static Mathematics mathematics;
+    Mathematics mathematics;
 
     @Parameterized.Parameter(0)
     public int numberOne;
