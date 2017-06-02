@@ -26,7 +26,7 @@ public class DDTTest {
     Mathematics mathematics;
 
     @Parameterized.Parameters
-    public static Collection testData() throws IOException {
+    public static Collection testData() {
         return DataProvider.getTestData("/testData.csv");
     }
 
