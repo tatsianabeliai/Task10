@@ -11,8 +11,6 @@ import static junit.framework.TestCase.assertEquals;
 @RunWith(value = Parameterized.class)
 public class DDTTest {
     private static final Logger LOG = Logger.getLogger(DDTTest.class);
-    Mathematics mathematics;
-
     @Parameterized.Parameter(0)
     public int numberOne;
     @Parameterized.Parameter(1)
@@ -25,6 +23,7 @@ public class DDTTest {
     public int expectedDiv;
     @Parameterized.Parameter(5)
     public int expectedMul;
+    Mathematics mathematics;
 
     @Parameterized.Parameters
     public static Collection testData() throws IOException {
@@ -36,22 +35,21 @@ public class DDTTest {
         LOG.info("@BeforeClass: executedBeforeAllTests");
     }
 
+    @AfterClass
+    public static void onceExecutedAfterAll() {
+        LOG.info("@AfterClass: executedAfterAllTests");
+    }
+
     @Before
     public void executedBeforeEachTest() {
         LOG.info("@Before: executedBeforeEachTest");
-        Mathematics math = new Mathematics();
-        mathematics = math;
+        mathematics = new Mathematics();
     }
 
     @After
     public void executedAfterEachTest() {
         LOG.info("@After: executedAfterEachTest");
         mathematics.setResult(0);
-    }
-
-    @AfterClass
-    public static void onceExecutedAfterAll() {
-        LOG.info("@AfterClass: executedAfterAllTests");
     }
 
     @Test
