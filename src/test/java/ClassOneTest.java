@@ -7,13 +7,13 @@ import static org.junit.Assert.assertEquals;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ClassOneTest {
-    final static int numberOne = 50;
-    final static int numberTwo = 5;
-    final static int sumResult = 55;
-    final static int deductResult = 45;
-    final static int divideResult = 10;
-    final static int multiplyResult = 250;
     private static final Logger LOG = Logger.getLogger(ClassOneTest.class);
+    private final int NUMBER_ONE = 50;
+    private final int NUMBER_TWO = 5;
+    private final int SUM_RESULT = 55;
+    private final int DEDUCT_RESULT = 45;
+    private final int DIVIDE_RESULT = 10;
+    private final int MULTIPLY_RESULT = 250;
     private Mathematics mathematics;
 
     @BeforeClass
@@ -41,47 +41,46 @@ public class ClassOneTest {
     @Category(SlowTests.class)
     @Test
     public void addTest() {
-        mathematics.add(numberOne, numberTwo);
+        mathematics.add(NUMBER_ONE, NUMBER_TWO);
         int result = mathematics.getResult();
-        assertEquals("Not expected result is displayed", sumResult, result);
+        assertEquals("Not expected result is displayed", SUM_RESULT, result);
     }
 
     @Category(SlowTests.class)
     @Test(timeout = 1000)
     public void deductTest() {
-        mathematics.setResult(1);
         try {
             Thread.sleep(1500);
         } catch (InterruptedException ex) {
             LOG.error(ex);
             Assert.fail("The exception has been caught " + ex);
         }
-        mathematics.deduct(numberOne, numberTwo);
+        mathematics.deduct(NUMBER_ONE, NUMBER_TWO);
         int result = mathematics.getResult();
-        assertEquals("Not expected result is displayed", deductResult, result);
+        assertEquals("Not expected result is displayed", DEDUCT_RESULT, result);
     }
 
     @Category(SlowTests.class)
     @Test
     public void multiplyTest() {
-        mathematics.multiply(numberOne, numberTwo);
+        mathematics.multiply(NUMBER_ONE, NUMBER_TWO);
         int result = mathematics.getResult();
-        assertEquals("Not expected result is displayed", multiplyResult, result);
+        assertEquals("Not expected result is displayed", MULTIPLY_RESULT, result);
     }
 
     @Category(SlowTests.class)
     @Test
     public void divideTest() {
-        mathematics.divide(numberOne, numberTwo);
+        mathematics.divide(NUMBER_ONE, NUMBER_TWO);
         int result = mathematics.getResult();
-        assertEquals("Not expected result is displayed", divideResult, result);
+        assertEquals("Not expected result is displayed", DIVIDE_RESULT, result);
     }
 
     @Category(SlowTests.class)
     @Test
     public void divideByZeroTest() {
-        mathematics.divide(numberOne, 0);
+        mathematics.divide(NUMBER_ONE, 0);
         int result = mathematics.getResult();
-        assertEquals("Not expected result is displayed", divideResult, result);
+        assertEquals("Not expected result is displayed", DIVIDE_RESULT, result);
     }
 }
