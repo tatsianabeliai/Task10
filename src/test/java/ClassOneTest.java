@@ -7,13 +7,13 @@ import static org.junit.Assert.assertEquals;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ClassOneTest {
+    private static final Logger LOG = Logger.getLogger(ClassOneTest.class);
     private final int NUMBER_ONE = 50;
     private final int NUMBER_TWO = 5;
     private final int SUM_RESULT = 55;
     private final int DEDUCT_RESULT = 45;
     private final int DIVIDE_RESULT = 10;
     private final int MULTIPLY_RESULT = 250;
-    private static final Logger LOG = Logger.getLogger(ClassOneTest.class);
     private Mathematics mathematics;
 
     @BeforeClass
@@ -49,7 +49,6 @@ public class ClassOneTest {
     @Category(SlowTests.class)
     @Test(timeout = 1000)
     public void deductTest() {
-        mathematics.setResult(1);
         try {
             Thread.sleep(1500);
         } catch (InterruptedException ex) {
